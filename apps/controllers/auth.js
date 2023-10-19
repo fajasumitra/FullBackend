@@ -8,7 +8,7 @@ exports.signup = async (req, res) => {
       fullName: req.body.fullName,
       email: req.body.email,
       role: req.body.role,
-      password: bcrypt.hashSync(req.body.password, 8)
+      password: bcrypt.hashSync(req.body.password, 8),
     });
 
     const savedUser = await user.save();
@@ -34,27 +34,27 @@ exports.signin = async (req, res) => {
       return res.status(404).json({ message: "User Not found." });
     }
 
-    const passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    const passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      user.password
+    );
 
     if (!passwordIsValid) {
       return res.status(401).json({
         accessToken: null,
-        message: "Invalid Password!"
+        message: "Invalid Password!",
       });
     }
 
     const token = jwt.sign({ id: user.id }, process.env.API_SECRET, {
-      expiresIn: 86400
+      expiresIn: 86400,
     });
 
     res.status(200).json({
-      user: {
-        id: user._id,
-        email: user.email,
-        fullName: user.fullName,
-      },
       message: "Login successful",
-      accessToken: token,
+      data: {
+        accessToken: token,
+      },
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
