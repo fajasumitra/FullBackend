@@ -3,23 +3,24 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const server = http.createServer(app);
-const db = require("./apps/database/db");
+const dbMongo = require("./apps/database/dbMongo");
+const dbPG = require("./apps/database/dbPG");
 const routes = require("./apps/routes/api.routes");
-const limiter = require("./apps/utils/rateLimit");
 require("dotenv").config();
+const limiter = require("./apps/utils/rateLimit");
 
+//Database Connection
+dbMongo();
+dbPG();
+
+//middlewares
+app.use(limiter);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Database Connection
-db();
-
 //Routes
 routes(app);
-
-//limiter
-limiter(app);
 
 //Server Connection
 const PORT = process.env.PORT;

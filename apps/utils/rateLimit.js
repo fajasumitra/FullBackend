@@ -1,12 +1,15 @@
-import { rateLimit } from 'express-rate-limit'
+const rateLimit = require("express-rate-limit");
 
-module.exports = app => {
-    const limiter = rateLimit({
-        windowMs: 60 * 60 * 1000,
-        limit: 100, // Limit each IP to 100 requests per `window` (here, per 60 minutes)
-        standardHeaders: 'draft-7', // Set `RateLimit` and `RateLimit-Policy` headers
-        legacyHeaders: false,
-    })
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, //1 menit
+  limit: 100,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+  handler: function (req, res) {
+    res.status(this.statusCode).json({
+      message: "Too many requests, please try again later.",
+    });
+  },
+});
 
-    app.use(limiter)
-}
+module.exports = limiter;
