@@ -1,5 +1,5 @@
-const history = require('../models/pg/history');
-const { apiResponse } = require('../helpers/httpExecptions');
+const history = require('../../models/pg/history');
+const { apiResponse } = require('../../helpers/httpExecptions');
 
 exports.createHistory = async (req, res) => {
     const {id_user, id_obat} = req.body;

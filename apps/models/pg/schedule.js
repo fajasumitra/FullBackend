@@ -21,7 +21,7 @@ const Schedule = db.sequelize.define('schedule', {
         allowNull: false,
     },
     jam : {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     },
 })

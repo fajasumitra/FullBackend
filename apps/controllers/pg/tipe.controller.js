@@ -1,4 +1,4 @@
-const tipe = require('../../models/pg/tipe.model');
+const tipe = require('../../models/pg/tipe');
 
 exports.createTipe = async (req, res) => {
     const { name, deskripsi } = req.body;

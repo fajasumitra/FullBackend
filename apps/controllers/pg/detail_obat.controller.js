@@ -1,5 +1,5 @@
-const detail_obat = require('../models/pg/detail_obat');
-const { apiResponse } = require('../helpers/httpExecptions');
+const detail_obat = require('../../models/pg/detail_obat');
+const { apiResponse } = require('../../helpers/httpExecptions');
 
 exports.createDetailObat = async (req, res) => {
     const { indikasi_umum, dewasa, anak, perhatian, efek_samping, kontraIndikasi, link, id_obat } = req.body;
