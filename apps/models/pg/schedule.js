@@ -13,11 +13,11 @@ const Schedule = db.sequelize.define('schedule', {
         allowNull: false,
     },
     time_start: {
-        type: DataTypes.TIME,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     time_end: {
-        type: DataTypes.TIME,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     jam : {

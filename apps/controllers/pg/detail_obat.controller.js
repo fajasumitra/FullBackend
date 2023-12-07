@@ -1,8 +1,9 @@
 const detail_obat = require('../../models/pg/detail_obat');
+const obat = require('../../models/pg/obat');
 const { apiResponse } = require('../../helpers/httpExecptions');
 
 exports.createDetailObat = async (req, res) => {
-    const { indikasi_umum, dewasa, anak, perhatian, efek_samping, kontraIndikasi, link, id_obat } = req.body;
+    const { indikasi_umum, dewasa, anak, perhatian, efek_samping, kontraIndikasi, link } = req.body;
 
     try {
         const newDetailObat = new detail_obat({
@@ -12,8 +13,8 @@ exports.createDetailObat = async (req, res) => {
             perhatian,
             efek_samping,
             kontraIndikasi,
-            link,
-            id_obat
+            link
+    
         });
         await newDetailObat.save();
         res.status(201).json(apiResponse(201, 'Success', 'Detail Obat Created', newDetailObat));
@@ -48,7 +49,7 @@ exports.getDetailObatById = async (req, res) => {
 
 exports.updateDetailObat = async (req, res) => {
     const { id } = req.params;
-    const { indikasi_umum, dewasa, anak, perhatian, efek_samping, kontraIndikasi, link, id_obat } = req.body;
+    const { indikasi_umum, dewasa, anak, perhatian, efek_samping, kontraIndikasi, link } = req.body;
     try {
         const detailObats = await detail_obat.update({
             indikasi_umum,
@@ -57,8 +58,8 @@ exports.updateDetailObat = async (req, res) => {
             perhatian,
             efek_samping,
             kontraIndikasi,
-            link,
-            id_obat
+            link
+    
         }, {
             where: {
                 id: id,
@@ -83,4 +84,3 @@ exports.deleteDetailObat = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
-

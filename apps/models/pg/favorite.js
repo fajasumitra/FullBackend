@@ -3,7 +3,7 @@ const db = require('../../database/dbPG');
 const user = require('./user');
 const obat = require('./obat');
 
-const History = db.sequelize.define('history', {
+const Favorite = db.sequelize.define('favorite', {
     id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
@@ -11,9 +11,9 @@ const History = db.sequelize.define('history', {
     },
 })
 
-History.belongsTo(user, { foreignKey: 'id_user' });
-History.belongsTo(obat, { foreignKey: 'id_obat' });
+Favorite.belongsTo(user, { foreignKey: 'id_user' });
+Favorite.belongsTo(obat, { foreignKey: 'id_obat' });
 
-History.sync({ alter: true });
+Favorite.sync({ alter: true });
 
-module.exports = History;
+module.exports = Favorite;

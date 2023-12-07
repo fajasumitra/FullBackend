@@ -75,3 +75,18 @@ exports.deleteProfile = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 }
+
+// get profile by user id
+exports.getProfileByUserId = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const foundProfile = await profile.findOne({ where: { user_id: id } });
+        if (foundProfile) {
+            res.status(200).json(apiResponse(200, 'Success', 'Profile Found', foundProfile));
+        } else {
+            res.status(404).json(apiResponse(404, 'Error', 'Profile Not Found', null));
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}

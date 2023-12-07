@@ -1,10 +1,11 @@
 const tipe = require('../../models/pg/tipe');
+const { apiResponse } = require('../../helpers/httpExecptions');
 
 exports.createTipe = async (req, res) => {
-    const { name, deskripsi } = req.body;
+    const { nama, deskripsi } = req.body;
     try {
         const newTipe = new tipe({
-            name,
+            nama,
             deskripsi,
         });
         await newTipe.save();
@@ -39,10 +40,10 @@ exports.getTipeById = async (req, res) => {
 
 exports.updateTipe = async (req, res) => {
     const { id } = req.params;
-    const { name, deskripsi } = req.body;
+    const { nama, deskripsi } = req.body;
     try {
         const tipes = await tipe.update({
-            name,
+            nama,
             deskripsi,
         }, {
             where: {

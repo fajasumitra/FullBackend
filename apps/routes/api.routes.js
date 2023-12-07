@@ -12,6 +12,7 @@ const {
   createProfile,
   updateProfile,
   deleteProfile,
+  getProfileByUserId
 } = require("../controllers/pg/profile.controller");
 
 const {
@@ -28,6 +29,7 @@ const {
   getDetailObatById,
   updateDetailObat,
   deleteDetailObat,
+  
 } = require("../controllers/pg/detail_obat.controller");
 
 const {
@@ -54,26 +56,41 @@ const {
   deleteTipe,
 } = require("../controllers/pg/tipe.controller");
 
+const {
+  createFavorite,
+  getAllFavorite,
+  getFavoriteById,
+  updateFavorite,
+  deleteFavorite,
+  deleteAllFavorite
+} = require("../controllers/pg/favorite.controller");
+
+const {
+  getProfileAndUser,
+  createProfileAndUser,
+  updateProfileAndUser,
+  deleteProfileAndUser,
+  GetAllObatDetailObat
+} = require("../controllers/pg/mixed.controller");
+
 module.exports = (app) => {
   //user
   router.post("/register", createUser);
   router.post("/login", loginUser);
   router.get("/user", getUser);
-  // router.get('/profile', verifyToken, (req, res) => {
-  //     if (!req.user) {
-  //         return res.status(401).json({ message: 'Invalid Token' });
-  //     }
-  //     res.status(200).json({ user: req.user.id });
-  // });
 
+  
   //profile
+  router.use('/profile', verifyToken)
   router.post("/profile", createProfile);
   router.get("/profile", getProfile);
   router.get("/profile/:id", getProfileById);
   router.put("/profile/:id", updateProfile);
   router.delete("/profile/:id", deleteProfile);
+  router.get("/profile/user/:id", getProfileByUserId);
 
   //history
+  router.use('/history', verifyToken)
   router.post("/history", createHistory);
   router.get("/history", getAllHistory);
   router.get("/history/:id", getHistoryById);
@@ -94,6 +111,7 @@ module.exports = (app) => {
   router.delete("/obat/:id", deleteObat);
 
   //schedule
+  router.use('/schedule', verifyToken)
   router.post("/schedule", createSchedule);
   router.get("/schedule", getAllSchedule);
   router.get("/schedule/:id", getScheduleById);
@@ -106,6 +124,25 @@ module.exports = (app) => {
   router.get("/tipe/:id", getTipeById);
   router.put("/tipe/:id", updateTipe);
   router.delete("/tipe/:id", deleteTipe);
+
+  //favorite
+  router.use('/favorite', verifyToken)
+  router.post("/favorite", createFavorite);
+  router.get("/favorite", getAllFavorite);
+  router.get("/favorite/:id", getFavoriteById);
+  router.put("/favorite/:id", updateFavorite);
+  router.delete("/favorite/:id", deleteFavorite);
+  router.delete("/favorite", deleteAllFavorite);
+
+  //mixed user and profile
+  router.use('/user/profile', verifyToken)
+  router.get("/user/profile", getProfileAndUser);
+  router.post("/user/profile", createProfileAndUser);
+  router.put("/user/profile/:id", updateProfileAndUser);
+  router.delete("/user/profile/:id", deleteProfileAndUser);
+
+  //mixed obat, detail_obat, tipe
+  router.get("/all/obat", GetAllObatDetailObat);
 
   app.use("/api", router);
 };
