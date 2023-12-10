@@ -1,7 +1,7 @@
 const profile = require("../../models/pg/profile.js");
 const user = require("../../models/pg/user.js");
-const obat = require("../../models/pg/obat.js");
-const detail_obat = require("../../models/pg/detail_obat.js");
+const obat = require("../../models/pg/obat");
+const detail_obat = require("../../models/pg/obat");
 const tipe = require("../../models/pg/tipe.js");
 const apiResponse = require("../../helpers/httpExecptions.js");
 
