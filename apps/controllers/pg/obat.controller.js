@@ -71,6 +71,7 @@ exports.getObatById = async (req, res) => {
       include: [
         {
           model: tipe,
+          as: "tipe",
           attributes: ["nama", "deskripsi"],
         },
       ],

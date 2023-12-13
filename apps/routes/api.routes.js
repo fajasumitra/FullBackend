@@ -73,6 +73,11 @@ const {
   GetAllObatDetailObat
 } = require("../controllers/pg/mixed.controller");
 
+const {
+  upload,
+  uploadImage
+} = require("../controllers/pg/uploadImage.controller");
+
 module.exports = (app) => {
   //user
   router.post("/register", createUser);
@@ -135,14 +140,14 @@ module.exports = (app) => {
   router.delete("/favorite", deleteAllFavorite);
 
   //mixed user and profile
-  router.use('/user/profile', verifyToken)
+  // router.use('/user/profile', verifyToken)
   router.get("/user/profile", getProfileAndUser);
   router.post("/user/profile", createProfileAndUser);
   router.put("/user/profile/:id", updateProfileAndUser);
   router.delete("/user/profile/:id", deleteProfileAndUser);
 
-  //mixed obat, detail_obat, tipe
-  router.get("/all/obat", GetAllObatDetailObat);
+  //upload image
+  router.post("/image", upload.single("image"), uploadImage);
 
   app.use("/api", router);
 };

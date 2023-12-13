@@ -4,6 +4,7 @@ const obat = require("../../models/pg/obat");
 const detail_obat = require("../../models/pg/obat");
 const tipe = require("../../models/pg/tipe.js");
 const apiResponse = require("../../helpers/httpExecptions.js");
+const bycrypt = require('bcrypt');
 
 //get both user and profile
 exports.getProfileAndUser = async (req, res) => {
@@ -29,10 +30,12 @@ exports.createProfileAndUser = async (req, res) => {
     const {email, username, password, name, birthdate, phoneNumber} = req.body;
     try {
         const newUser = new user({
-            email,
-            username,
-            password,
+        email,
+        username,
+        password,
         });
+        const salt = await bycrypt.genSalt(10);
+        newUser.password = await bycrypt.hash(password, salt);
         await newUser.save();
         const newProfile = new profile({
             name,

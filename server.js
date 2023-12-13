@@ -23,5 +23,5 @@ app.use(express.urlencoded({ extended: true }));
 routes(app);
 
 //Server Connection
-const PORT = process.env.PORT;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// const PORT = process.env.PORT;
+server.listen(3000, () => console.log(`Server running on port 3000`));
