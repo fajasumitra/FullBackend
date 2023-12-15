@@ -2,7 +2,6 @@ const Obat = require("../../models/pg/obat");
 const DetailObat = require("../../models/pg/detail_obat");
 const tipe = require("../../models/pg/tipe");
 const { apiResponse } = require("../../helpers/httpExecptions");
-const req = require("express/lib/request");
 
 exports.createObat = async (req, res) => {
   const { nama, kapasitas, deskripsi, id_tipe } = req.body;

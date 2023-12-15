@@ -73,10 +73,15 @@ const {
   GetAllObatDetailObat
 } = require("../controllers/pg/mixed.controller");
 
+// const {
+//   upload,
+//   uploadImage
+// } = require("../controllers/pg/uploadImage.controller");
+
 const {
   upload,
-  uploadImage
-} = require("../controllers/pg/uploadImage.controller");
+  createPredict
+} = require("../controllers/pg/predict.controller");
 
 module.exports = (app) => {
   //user
@@ -147,7 +152,7 @@ module.exports = (app) => {
   router.delete("/user/profile/:id", deleteProfileAndUser);
 
   //upload image
-  router.post("/image", upload.single("image"), uploadImage);
+  router.post("/predict", upload.single('image'), createPredict);
 
   app.use("/api", router);
 };
