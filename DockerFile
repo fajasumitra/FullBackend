@@ -1,13 +1,21 @@
-FROM node:alpine 
+FROM python:3.11
+
+RUN mkdir -p /usr/src/app
+
+COPY . /usr/src/app/
 
 WORKDIR /usr/src/app
 
-COPY package*.json /usr/src/app
+RUN pip3 install -r MedEase-ML/requirements.txt
+
+FROM node:20-alpine3.18
+
+WORKDIR /usr/src/app
 
 RUN npm install
-RUN apt-get update || : && apt-get install python -y
-RUN pip install -r ./Med~~Ease-ML/requirements.txt
 
-COPY . /usr/src/app
+COPY . /usr/src/app/
 
-CMD npm start
+EXPOSE 3000
+
+CMD ["npm", "start"]

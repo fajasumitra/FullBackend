@@ -3,6 +3,8 @@ const multer = require("multer");
 const fs = require("fs");
 const db = require("../../database/dbPG");
 const Obat = require("../../models/pg/obat");
+const DetailObat = require("../../models/pg/detail_obat");
+const tipe = require("../../models/pg/tipe");
 // const { exec } = require('child_process'); // async
 
 const storage = multer.diskStorage({
@@ -48,6 +50,26 @@ exports.createPredict = async (req, res) => {
       where: {
         nama: jsonData.NAME,
       },
+      include: [
+        {
+          model: tipe,
+          as: "tipe",
+          attributes: ["nama", "deskripsi"],
+        },
+        {
+          model: DetailObat,
+          as: "detail_obat",
+          attributes: [
+            "indikasi_umum",
+            "dewasa",
+            "anak",
+            "perhatian",
+            "efek_samping",
+            "kontraIndikasi",
+            "link",
+          ],
+        },
+      ],
     });
     if (result.length > 0) {
       res.status(200).json(apiResponse(200, "Success", "Obat Found", result));
