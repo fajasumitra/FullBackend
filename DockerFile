@@ -1,20 +1,29 @@
-FROM python:3.11
-
-RUN mkdir -p /usr/src/app
-
-COPY . /usr/src/app/
+# Stage 1: Python environment
+FROM python:3.11 as python_stage
 
 WORKDIR /usr/src/app
 
+COPY . /usr/src/app/
+
 RUN pip3 install -r MedEase-ML/requirements.txt
 
+# Stage 2: Node.js environment
+FROM node:20-alpine3.18 as node_stage
+
+WORKDIR /usr/src/app
+
+COPY --from=python_stage /usr/src/app/ /usr/src/app/
+
+RUN npm install
+
+# Final stage
 FROM node:20-alpine3.18
 
 WORKDIR /usr/src/app
 
-RUN npm install
+COPY --from=node_stage /usr/src/app/ /usr/src/app/
 
-COPY . /usr/src/app/
+RUN 
 
 EXPOSE 3000
 
