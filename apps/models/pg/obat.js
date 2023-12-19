@@ -11,16 +11,16 @@ const Obat = db.sequelize.define("obat", {
   },
   nama: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
     unique: true,
   },
   kapasitas: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.ARRAY(DataTypes.FLOAT),
     allowNull: true,
   },
   deskripsi: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
   },
 });
 

@@ -46,6 +46,8 @@ exports.getAllObat = async (req, res) => {
             "efek_samping",
             "kontraIndikasi",
             "link",
+            "golongan",
+            "komposisi",
           ],
         },
       ],

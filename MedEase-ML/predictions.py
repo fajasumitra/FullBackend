@@ -95,8 +95,8 @@ def getPredictions(image):
     df_clean = df[df['text'] != ""]
 
     doc = model_ner(text_from_ocr)
-    for ent in doc.ents:
-        print(f"Entity: {ent.text}, Label: {ent.label_}")
+    # for ent in doc.ents:
+    #     print(f"Entity: {ent.text}, Label: {ent.label_}")
 
     docjson = doc.to_json()
     docjson.keys()

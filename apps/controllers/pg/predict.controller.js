@@ -67,12 +67,18 @@ exports.createPredict = async (req, res) => {
             "efek_samping",
             "kontraIndikasi",
             "link",
+            "golongan",
+            "komposisi",
           ],
         },
       ],
     });
     if (result.length > 0) {
-      res.status(200).json(apiResponse(200, "Success", "Obat Found", result));
+      const combinedData = {
+        jsonData: jsonData,
+        obatData: result,
+      };
+      res.status(200).json(apiResponse(200, "Success", "Obat Found", combinedData));
     } else {
       res
         .status(404)

@@ -1,18 +1,14 @@
 {
   "NAME": [
-    "sanmol"
+    "oskadon sp"
   ],
   "ING": [
-    "paracetamol"
+    "paracetamol ibuprofen"
   ],
-  "TYPE": [
-    "tablet",
-    "tablet"
-  ],
+  "TYPE": [],
   "DES": [
-    "penurun panas pereda nyeri"
+    "nyeri otot obat pereda",
+    "nyetiotot rasa padalinggang punggung dan"
   ],
-  "ORG": [
-    "sanbe"
-  ]
+  "ORG": []
 }
