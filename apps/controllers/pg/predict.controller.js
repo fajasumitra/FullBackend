@@ -5,6 +5,7 @@ const db = require("../../database/dbPG");
 const Obat = require("../../models/pg/obat");
 const DetailObat = require("../../models/pg/detail_obat");
 const tipe = require("../../models/pg/tipe");
+const { Sequelize } = require("sequelize");
 // const { exec } = require('child_process'); // async
 
 const storage = multer.diskStorage({
@@ -46,9 +47,11 @@ exports.createPredict = async (req, res) => {
     const data = fs.readFileSync("./MedEase-ML/result/pred.json", "utf-8");
     const jsonData = JSON.parse(data);
 
-    const result = await Obat.findAll({
+    const result = await Obat.findOne({
       where: {
-        nama: jsonData.NAME,
+        nama: {
+          [Sequelize.Op.iRegexp]: `^${jsonData.NAME}$`,
+        },
       },
       include: [
         {
@@ -73,12 +76,14 @@ exports.createPredict = async (req, res) => {
         },
       ],
     });
-    if (result.length > 0) {
+    if (result) {
       const combinedData = {
         jsonData: jsonData,
         obatData: result,
       };
-      res.status(200).json(apiResponse(200, "Success", "Obat Found", combinedData));
+      res
+        .status(200)
+        .json(apiResponse(200, "Success", "Obat Found", combinedData));
     } else {
       res
         .status(404)
