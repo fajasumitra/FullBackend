@@ -15,7 +15,7 @@ const Obat = db.sequelize.define("obat", {
     unique: true,
   },
   kapasitas: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.ARRAY(DataTypes.STRING),
     allowNull: true,
   },
   deskripsi: {

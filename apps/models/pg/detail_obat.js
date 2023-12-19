@@ -9,32 +9,40 @@ const DetailObat = db.sequelize.define("detail_obat", {
     primaryKey: true,
   },
   indikasi_umum: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   dewasa: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   anak: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   perhatian: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   efek_samping: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   kontraIndikasi: {
-    type: DataTypes.STRING,
-    allowNull: false,
+    type: DataTypes.TEXT,
+    allowNull: true,
   },
   link: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  golongan : {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
+  },
+  komposisi : {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true,
   },
   id_obat: {
     type: DataTypes.UUID,

@@ -12,6 +12,8 @@ exports.createDetailObat = async (req, res) => {
     kontraIndikasi,
     link,
     id_obat,
+    golongan,
+    komposisi,
   } = req.body;
 
   try {
@@ -24,6 +26,8 @@ exports.createDetailObat = async (req, res) => {
       kontraIndikasi,
       link,
       id_obat,
+      golongan,
+      komposisi,
     });
     await newDetailObat.save();
     res
@@ -79,6 +83,8 @@ exports.updateDetailObat = async (req, res) => {
     efek_samping,
     kontraIndikasi,
     link,
+    golongan,
+    komposisi,
   } = req.body;
   try {
     const detailObats = await DetailObat.update(
@@ -90,6 +96,8 @@ exports.updateDetailObat = async (req, res) => {
         efek_samping,
         kontraIndikasi,
         link,
+        golongan,
+        komposisi,
       },
       {
         where: {
