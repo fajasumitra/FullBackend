@@ -6,7 +6,7 @@ const server = http.createServer(app);
 const dbMongo = require("./apps/database/dbMongo");
 const dbPG = require("./apps/database/dbPG");
 const routes = require("./apps/routes/api.routes");
-const limiter = require("./apps/utils/rateLimit");
+// const limiter = require("./apps/utils/rateLimit");
 require("dotenv").config();
 
 //Database Connection
@@ -14,7 +14,7 @@ require("dotenv").config();
 dbPG.connectDbPG();
 
 //middlewares
-app.use(limiter);
+// app.use(limiter);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
