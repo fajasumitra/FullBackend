@@ -1,4 +1,6 @@
 # MedEase Cloud Computing Path
+We bridge the models that have been created with machine learning and generate a form that can be used by mobile applications.
+
 ## Build With
 - [Cloud Run](https://cloud.google.com/run?hl=en)
 - [Express js](http://expressjs.com/en/starter/installing.html)
