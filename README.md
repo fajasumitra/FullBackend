@@ -19,5 +19,5 @@ Recognizing the need for future scalability and cost optimization, we opted for 
 
 ------------
 
-#### Virtual Machine 
+### Virtual Machine 
 ![1](https://github.com/fajasumitra/MedEase-Backend/assets/95381061/9fe536dc-866c-4024-b645-ac89ca6d3446)
