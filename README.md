@@ -1,4 +1,4 @@
-## MedEase Cloud Computing Path
+## MedEase - Cloud Computing
 We integrate and bridge the models that have been created by machine learning with the Back-End, which will produce a form that can be used by mobile applications. After that, we deploy the Back-End and the models together using Google Cloud Services.
 
 ------------
