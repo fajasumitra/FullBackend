@@ -3,7 +3,7 @@ We integrate and bridge the models that have been created by machine learning wi
 
 ## Build With
 - [Cloud Run](https://cloud.google.com/run?hl=en)
-- [Express js](http://expressjs.com/en/starter/installing.html)
+- [Express.js](http://expressjs.com/en/starter/installing.html)
 
 ## Connecting to Server
 We created an API using the Node JS programming language with the Express JS Framework for backend medicines detection and fetching datasets from Cloud SQL.
